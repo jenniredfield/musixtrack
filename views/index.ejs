@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <!-- <head>
+    <title>Music Lyrics Match</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src=""></script>
+  </head> -->
+  <%- include ./partials/head %>
+  <body>
+
+  <%- include('./partials/header') %>
+  <div class="wrapper">
+    <div class="form-div">
+      <form action="/search" method="get">
+        Artist: <input type="text" name="artist" class="input"><br>
+        Track: <input type="text" name="track" class="input"><br>
+        <input type="submit" value="Submit" class="button">
+      </form>
+  </div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="lyric-body col-md-8">
+      <p><%= obj.lyrics %></p>
+    </div>
+    <div class="col-md-4 sent">
+      <p><%= obj.sentiment %></p>
+    </div>
+  </div>
+</div>
+
+</div>
+  
+  </body>
+</html>
