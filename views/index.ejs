@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <!-- <head>
-    <title>Music Lyrics Match</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <script src=""></script>
-  </head> -->
+
+
   <%- include ./partials/head %>
   <body>
 
@@ -26,11 +23,20 @@
     </div>
     <div class="col-md-4 sent">
       <p><%= obj.sentiment %></p>
+      <% obj.keyWords.forEach(function(word){ %>
+
+      
+        <span><%= word %></span>
+      
+      <%  }) %>
     </div>
   </div>
 </div>
 
 </div>
+
+<script src="particles.js"></script>
+<script src="app.js"></script>
   
   </body>
 </html>

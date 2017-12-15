@@ -4,10 +4,18 @@ const {watson} = require('./natural-language');
 
 function getLyrics(query, res) {
 
-  console.log(query)
   let artist = query.artist;
   let track = query.track;
-  makeCall(artist,track, res);
+
+// let artist1 = 
+// let track2 = 
+
+    return makeCall(artist,track).then(function(data){
+        return watson(data);
+    }).then(function(obj){
+        console.log(obj);
+        res.render('index', {obj});
+    })
 
  
 }
@@ -26,32 +34,37 @@ function makeCall(artist, track, res){
 
     artist = encode(artist);
     track = encode(track);
-    console.log(res);
+
+    return new Promise(function(resolve, reject){
+
+    
     request.get(`http://api.musixmatch.com/ws/1.1/track.search?apikey=${key.api_key}&q_artist=${artist}&q_track=${track}&format=json&page_size=1&f_has_lyrics=1`, {json:true},
     (err, req, data) => {
-        if(err) { console.log(err);}
-        console.log(data);
-        console.log(data.message.body.track_list[0].track.track_id);
+        if(err) { reject(err); console.log(err);}
+    
         
         let trackId = data.message.body.track_list[0].track.track_id;
 
             request.get(`http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=${key.api_key}&track_id=${trackId}`, {json: true},
             (err, req, data) => {
-                if(err) {console.log(err); }
-                let lyrics = data.message.body.lyrics.lyrics_body;
-                console.log(data.message.body.lyrics.lyrics_body);
-                console.log(typeof lyrics)
-                
-                return Promise.all(watson(lyrics, res)).then(result => { res.send({result});   })
-                // console.log(res.message.body.track_list.forEach(function(obj){
-                //     console.log(obj);
-                // }));
-            });               
-    });
 
+                if(err) { reject(err); console.log(err); }
+
+                let lyrics = data.message.body.lyrics.lyrics_body;
+              
+                resolve(lyrics);
+            
+            });               
+        });
+    })
 }
 
-// makeCall('aerosmith', 'dream on');
+// makeCall('aerosmith', 'dream on').then(function(data, res){
+    
+//     return watson(data).then(function(data){
+//         console.log(data);
+//     });
+// });
 
 
 

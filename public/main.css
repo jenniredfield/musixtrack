@@ -7,13 +7,15 @@ body {
 
 
 .jumbotron1 {
-    
+
+    margin-top: 10px;
     height: 200px;
     text-align: center;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 80px;
     /* background-image: url('./img/music-banner.jpg');
     background-size: cover; */
 }
@@ -61,6 +63,8 @@ input:focus {
 .row > * {
 
     text-align: center;
+    color: #D4D4D4;
+    font-family: 'Pangolin', cursive;
 }
 
 .button {
@@ -70,3 +74,22 @@ input:focus {
     background: #ba3d3d;
     border: none;
 }
+
+#particles-js {
+
+    padding-top: 20px;
+    height: 300px;
+    background: black;
+}
+
+.particles-js {
+    
+        padding-top: 20px;
+        height: 400px;
+        background: black;
+    }
+
+    span {
+
+        color:  #EEEEEE;
+    }
